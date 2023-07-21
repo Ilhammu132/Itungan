@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Function library example</title>
+  <style>
+    input {
+      font-size: 2em;
+      margin: 10px 1px 0;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function kuadrat(num) {
+    return num * num;
+  }
+  
+  function kubik(num) {
+    return num * num * num;
+  }
+  
+  function factorial(num) {
+    if (num < 0) return undefined;
+    if (num === 0) return 1;
+    let x = num - 1;
+    while (x > 1) {
+      num *= x;
+      x--;
+    }
+    return num;
+  }
+
+  function calculate() {
+    const selectedOption = document.getElementById('Rumus').value;
+    const inputNum = parseInt(document.getElementById('inputNum').value);
+    let result;
+
+    if (selectedOption === 'factorial') {
+      result = factorial(inputNum);
+    } else if (selectedOption === 'kubik') {
+      result = kubik(inputNum);
+    } else if (selectedOption === 'kuadrat') {
+      result = kuadrat(inputNum);
+    } else {
+      result = 'Invalid option';
+    }
+
+    document.getElementById('output').textContent = `Hasil ${selectedOption} dari ${inputNum} adalah ${result}`;
+  }
+</script>
+
+<select name="Pilih" id="Rumus">
+    <option value="factorial">
+        Factorial
+    </option>
+    <option value="kubik">
+        Kubik
+    </option>
+    <option value="kuadrat">
+        Kuadrat
+    </option>
+</select>
+
+<label for="inputNum">Enter a number:</label>
+<input type="number" id="inputNum">
+<button onclick="calculate()">Calculate</button>
+
+<div id="output"></div>
+
+</body>
+</html>
